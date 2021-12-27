@@ -50,13 +50,15 @@ sub check_stock {
             print Dumper "Stock was still out on $current_time";
             print Dumper $stock_data;
         } else {
-            for (my $i=0; $i <= 50000000; $i++) {
-                print $i . chr(7) . "\n";
-            }
+            if ($stock_data->{$store}->{'out_count'} > 0 ) {
+                for (my $i=0; $i <= 50000000; $i++) {
+                    print $i . chr(7) . "\n";
+                }
 
-            open (STOCKFILE, ">$current_time.txt");
-            print STOCKFILE "Stock was found" . "\n"  . Dumper $stock_data;
-            close STOCKFILE;
+                open (STOCKFILE, ">$current_time.txt");
+                print STOCKFILE "Stock was found" . "\n"  . Dumper $stock_data;
+                close STOCKFILE;
+            }
         }
     }
 
