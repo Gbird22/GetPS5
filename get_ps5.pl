@@ -51,13 +51,13 @@ sub check_stock {
             print Dumper $stock_data;
         } else {
             if ($stock_data->{$store}->{'out_count'} > 0 ) {
+                open (STOCKFILE, ">$current_time.txt");
+                print STOCKFILE "Stock was found" . "\n"  . Dumper $stock_data;
+                close STOCKFILE;
                 for (my $i=0; $i <= 50000000; $i++) {
                     print $i . chr(7) . "\n";
                 }
 
-                open (STOCKFILE, ">$current_time.txt");
-                print STOCKFILE "Stock was found" . "\n"  . Dumper $stock_data;
-                close STOCKFILE;
             }
         }
     }
